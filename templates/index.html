@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+            margin: 10px 0;
+        }
+        .generated img {
+            margin-top: 20px;
+            width: 200px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">
+        <h1>Welcome to our QR Code Generator</h1>
+        <h2>Insert a link or text below to generate your QR code</h2>
+    </div>
+    <form action="/" method="POST">
+        <input type="text" name="link" placeholder="Enter your link or text here" required>
+        <br>
+        <button type="submit">Generate QR</button>
+    </form>
+
+    {% if error %}
+    <div class="error">{{ error }}</div>
+    {% endif %}
+
+    {% if data %}
+    <div class="generated">
+        <h2>Your QR Code:</h2>
+        <img src="{{ data }}" alt="Generated QR Code">
+        <p>Here is the QR code generated for your input.</p>
+    </div>
+    {% endif %}
+</body>
+</html>
